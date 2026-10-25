@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#20221f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="Rentals 360: alojamientos completos, cómodos y bien ubicados en Neiva, Huila. Reserva directamente con el anfitrión por WhatsApp.">
+    <meta property="og:title" content="Rentals 360 · Alojamientos en Neiva">
+    <meta property="og:description" content="Encuentra un espacio cómodo para tu próxima estadía en Neiva, Huila.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#df6b52">
+
+    <title>Rentals 360 · Alojamientos en Neiva, Huila</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icono/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icono/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icono/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+        :root {
+            --ink: #20221f;
+            --ink-soft: #4f554c;
+            --muted: #747b72;
+            --paper: #fffdf9;
+            --cream: #f5f1e8;
+            --cream-deep: #ece5d8;
+            --line: #e6dfd3;
+            --accent: #e56b4d;
+            --accent-dark: #bd4e39;
+            --accent-soft: #f8dfd5;
+            --olive: #7f8b70;
+            --serif: "DM Serif Display", Georgia, serif;
+            --sans: "Manrope", Arial, sans-serif;
+            --shadow-sm: 0 10px 30px rgba(32, 34, 31, .08);
+            --shadow-lg: 0 24px 70px rgba(32, 34, 31, .18);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --pill: 999px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.menu-abierto { overflow: hidden; }
+
+        img { display: block; max-width: 100%; }
+        a { color: inherit; text-decoration: none; }
+        button, input { font: inherit; }
+        button { cursor: pointer; }
+        ul { list-style: none; margin: 0; padding: 0; }
+
+        .contenedor {
+            width: min(100% - 48px, 1180px);
+            margin-inline: auto;
+        }
+
+        .serif { font-family: var(--serif); }
+
+        h1, h2, h3, p { margin-top: 0; }
+
+        h1, h2, h3 {
+            font-family: var(--serif);
+            font-weight: 400;
+            letter-spacing: -.02em;
+            line-height: 1.08;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            z-index: 100;
+            padding: 10px 14px;
+            border-radius: var(--pill);
+            background: var(--paper);
+            color: var(--ink);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-160%);
+            transition: transform .2s ease;
+        }
+
+        .skip-link:focus { transform: translateY(0); }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 16px;
+            color: var(--accent);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 22px;
+            height: 2px;
+            border-radius: 10px;
+            background: currentColor;
+            content: "";
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 13px 20px;
+            border: 1px solid transparent;
+            border-radius: var(--pill);
+            font-size: .86rem;
+            font-weight: 800;
+            transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .btn:hover { box-shadow: 0 10px 22px rgba(32, 34, 31, .16); }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(229, 107, 77, .24);
+        }
+
+        .btn-primary:hover { background: var(--accent-dark); }
+
+        .btn-light {
+            background: rgba(255, 253, 249, .12);
+            border-color: rgba(255, 253, 249, .32);
+            color: #fff;
+        }
+
+        .btn-light:hover { background: rgba(255, 253, 249, .22); }
+
+        .btn-dark {
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .btn-dark:hover { background: var(--accent-dark); }
+
+        /* Barra superior y navegación */
+        .topbar {
+            background: var(--ink);
+            color: rgba(255, 253, 249, .78);
+            font-size: .73rem;
+            letter-spacing: .02em;
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 36px;
+            gap: 16px;
+        }
+
+        .topbar strong { color: #fff; font-weight: 800; }
+        .topbar a { color: #fff; font-weight: 700; }
+        .topbar a:hover { color: var(--accent-soft); }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid rgba(230, 223, 211, .88);
+            background: rgba(255, 253, 249, .97);
+        }
+
+        .nav-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 78px;
+            gap: 28px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            flex: none;
+        }
+
+        .brand-mark {
+            position: relative;
+            display: grid;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            overflow: hidden;
+            border-radius: 13px;
+            background: var(--accent);
+            color: #fff;
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            box-shadow: 0 8px 18px rgba(229, 107, 77, .25);
+        }
+
+        .brand-mark img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 1.32rem;
+            line-height: 1;
+        }
+
+        .brand-name small {
+            display: block;
+            margin-top: 5px;
+            color: var(--muted);
+            font-family: var(--sans);
+            font-size: .58rem;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 12px 0;
+            color: var(--ink-soft);
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .nav-links a::after {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+            left: 0;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--accent);
+            content: "";
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .2s ease;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+        .nav-cta { min-height: 42px; padding: 10px 17px; font-size: .78rem; }
+
+        .nav-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 1.2rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 2px 24px 20px;
+            border-top: 1px solid var(--line);
+            background: var(--paper);
+        }
+
+        .mobile-menu.open { display: grid; gap: 4px; }
+
+        .mobile-menu a {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--ink-soft);
+            font-size: .94rem;
+            font-weight: 700;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 640px;
+            overflow: hidden;
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .hero-slides,
+        .hero-slide,
+        .hero-slide img,
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slides { z-index: 0; }
+
+        .hero-slide {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .hero-slide.active { opacity: 1; }
+
+        .hero-slide img {
+            object-fit: cover;
+            transform: scale(1.04);
+            transition: transform 6s ease;
+        }
+
+        .hero-slide.active img { transform: scale(1.1); }
+
+        .hero-overlay {
+            z-index: 1;
+            background:
+                linear-gradient(90deg, rgba(20, 24, 21, .94) 0%, rgba(20, 24, 21, .7) 48%, rgba(20, 24, 21, .26) 100%),
+                linear-gradient(0deg, rgba(20, 24, 21, .55), transparent 40%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: minmax(0, 650px) minmax(240px, 1fr);
+            align-items: center;
+            gap: 60px;
+            min-height: 640px;
+            padding-top: 42px;
+            padding-bottom: 118px;
+        }
+
+        .hero-copy { max-width: 680px; }
+
+        .hero .eyebrow { color: #f4bdab; }
+
+        .hero h1 {
+            max-width: 10ch;
+            margin-bottom: 22px;
+            color: #fff;
+            font-size: clamp(3.1rem, 7vw, 5.9rem);
+        }
+
+        .hero h1 em { color: #f1a38d; font-style: italic; }
+
+        .hero-description {
+            max-width: 52ch;
+            margin-bottom: 31px;
+            color: rgba(255, 253, 249, .78);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .hero-proof {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 32px;
+            color: rgba(255, 253, 249, .74);
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .hero-proof-item { display: inline-flex; align-items: center; gap: 7px; }
+        .hero-proof-item i { color: #f1c179; font-size: 1rem; }
+        .proof-divider { width: 1px; height: 18px; background: rgba(255,255,255,.25); }
+
+        .hero-card {
+            justify-self: end;
+            width: min(100%, 300px);
+            padding: 22px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: var(--radius-md);
+            background: rgba(255, 253, 249, .12);
+            box-shadow: 0 22px 55px rgba(0,0,0,.2);
+            backdrop-filter: blur(16px);
+        }
+
+        .hero-card-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 48px;
+            color: rgba(255,255,255,.7);
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .hero-card-label i { color: #f1c179; font-size: 1rem; }
+
+        .hero-card h2 { margin-bottom: 8px; color: #fff; font-size: 1.8rem; }
+        .hero-card p { margin-bottom: 18px; color: rgba(255,255,255,.7); font-size: .82rem; line-height: 1.55; }
+
+        .hero-card-list { display: grid; gap: 11px; }
+        .hero-card-list li { display: flex; align-items: center; gap: 9px; color: rgba(255,255,255,.85); font-size: .76rem; }
+        .hero-card-list i { color: #f1a38d; }
+
+        .hero-controls {
+            position: absolute;
+            right: max(24px, calc((100% - 1180px) / 2));
+            bottom: 37px;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.42);
+            transition: width .25s ease, background .25s ease;
+        }
+
+        .hero-dot.active { width: 30px; border-radius: var(--pill); background: #f1a38d; }
+
+        /* Buscador */
+        .buscador-wrap {
+            position: relative;
+            z-index: 5;
+            margin-top: -65px;
+        }
+
+        .buscador {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr 1fr auto;
+            align-items: end;
+            gap: 13px;
+            padding: 17px;
+            border: 1px solid rgba(230, 223, 211, .94);
+            border-radius: var(--radius-md);
+            background: rgba(255, 253, 249, .97);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .campo { min-width: 0; }
+
+        .campo label {
+            display: block;
+            margin: 0 0 7px 4px;
+            color: var(--muted);
+            font-size: .67rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .input-wrap { position: relative; }
+        .input-wrap i { position: absolute; top: 50%; left: 13px; color: var(--accent); transform: translateY(-50%); }
+
+        .campo input {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 13px 12px 38px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            outline: 0;
+            background: #fff;
+            color: var(--ink);
+            font-size: .82rem;
+        }
+
+        .campo input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+        .btn-buscar { width: 100%; border: 0; }
+
+        .search-status {
+            grid-column: 1 / -1;
+            display: none;
+            margin: 1px 4px 0;
+            color: var(--ink-soft);
+            font-size: .75rem;
+        }
+
+        .search-status.visible { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+
+        .status-cta { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border-radius: var(--pill); background: var(--ink); color: #fff; font-size: .72rem; font-weight: 800; }
+        .status-cta:hover { background: var(--accent-dark); }
+
+        /* Secciones */
+        .seccion { padding: 112px 0; }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 44px;
+        }
+
+        .section-heading h2 {
+            max-width: 12ch;
+            margin-bottom: 0;
+            font-size: clamp(2.2rem, 4vw, 3.25rem);
+        }
+
+        .section-heading p {
+            max-width: 42ch;
+            margin: 0 0 4px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.75;
+        }
+
+        .section-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-dark);
+            font-size: .8rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .section-link i { transition: transform .2s ease; }
+        .section-link:hover i { transform: translateX(4px); }
+
+        /* Beneficios */
+        .beneficios {
+            border-bottom: 1px solid var(--line);
+            background: var(--cream);
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .beneficio {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-height: 110px;
+            padding: 20px 30px;
+            border-right: 1px solid var(--line);
+        }
+
+        .beneficio:first-child { padding-left: 0; }
+        .beneficio:last-child { padding-right: 0; border-right: 0; }
+        .beneficio-icon { display: grid; width: 42px; height: 42px; flex: none; place-items: center; border-radius: 13px; background: #fff; color: var(--accent); font-size: 1.1rem; }
+        .beneficio strong { display: block; margin-bottom: 3px; font-size: .8rem; }
+        .beneficio span { color: var(--muted); font-size: .74rem; line-height: 1.4; }
+
+        /* Alojamientos */
+        .alojamientos { background: var(--paper); }
+
+        .alojamientos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .alojamiento-card { position: relative; min-width: 0; }
+        .card-link::after { position: absolute; inset: 0; z-index: 1; content: ""; }
+
+        .alojamiento-media {
+            position: relative;
+            aspect-ratio: 1 / 1.08;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            background: var(--cream-deep);
+        }
+
+        .alojamiento-media::after {
+            position: absolute;
+            inset: auto 0 0;
+            height: 35%;
+            background: linear-gradient(transparent, rgba(0,0,0,.25));
+            content: "";
+            pointer-events: none;
+        }
+
+        .alojamiento-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
+        .alojamiento-card:hover .alojamiento-media img { transform: scale(1.06); }
+
+        .badge {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            z-index: 2;
+            padding: 7px 11px;
+            border-radius: var(--pill);
+            background: rgba(255,253,249,.94);
+            color: var(--ink);
+            font-size: .63rem;
+            font-weight: 800;
+            letter-spacing: .02em;
+        }
+
+        .favorite {
+            position: absolute;
+            top: 11px;
+            right: 11px;
+            z-index: 3;
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.5);
+            border-radius: 50%;
+            background: rgba(32,34,31,.35);
+            color: #fff;
+            font-size: .94rem;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .favorite:hover { background: #fff; color: var(--accent); }
+        .favorite.active { background: #fff; color: var(--accent); }
+
+        .alojamiento-info { padding: 16px 2px 0; }
+        .alojamiento-title-row { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+        .alojamiento-title { margin: 0; font-size: 1.22rem; }
+        .rating { display: inline-flex; align-items: center; gap: 4px; color: var(--ink); font-size: .76rem; font-weight: 800; white-space: nowrap; }
+        .rating i { color: #dda848; }
+        .location { margin: 6px 0 12px; color: var(--muted); font-size: .76rem; }
+        .details { display: flex; flex-wrap: wrap; gap: 9px 13px; margin: 0; color: var(--muted); font-size: .72rem; }
+        .details span { display: inline-flex; align-items: center; gap: 5px; }
+        .details i { color: var(--accent); }
+        .card-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 17px; color: var(--accent-dark); font-size: .77rem; font-weight: 800; }
+        .card-link i { transition: transform .2s ease; }
+        .alojamiento-card:hover .card-link i { transform: translateX(4px); }
+
+        .coming-soon .alojamiento-media { display: grid; place-items: center; border: 1px dashed #cfc5b6; background: var(--cream); }
+        .coming-soon .alojamiento-media i { color: var(--olive); font-size: 2.1rem; }
+        .coming-soon .alojamiento-title { color: var(--ink-soft); }
+
+        /* Presentación */
+        .presentacion { background: var(--cream); }
+
+        .presentacion-grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 92px;
+        }
+
+        .presentacion h2 { max-width: 11ch; margin-bottom: 20px; font-size: clamp(2.4rem, 4.4vw, 3.7rem); }
+        .presentacion-copy { max-width: 49ch; color: var(--ink-soft); font-size: .9rem; line-height: 1.8; }
+
+        .steps { display: grid; gap: 25px; margin-top: 32px; }
+        .step { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+        .step-number { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #d6cbbb; border-radius: 50%; color: var(--accent-dark); font-size: .73rem; font-weight: 800; }
+        .step h3 { margin: 2px 0 5px; font-family: var(--sans); font-size: .83rem; font-weight: 800; letter-spacing: 0; }
+        .step p { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.55; }
+
+        .visual-stack { position: relative; min-height: 500px; }
+        .visual-main { position: absolute; top: 0; right: 0; width: 78%; height: 410px; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+        .visual-main img { width: 100%; height: 100%; object-fit: cover; }
+        .visual-accent { position: absolute; bottom: 0; left: 0; width: 52%; height: 230px; overflow: hidden; border: 8px solid var(--cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+        .visual-accent img { width: 100%; height: 100%; object-fit: cover; }
+        .visual-note { position: absolute; right: 0; bottom: 27px; display: flex; align-items: center; gap: 9px; padding: 13px 16px; border-radius: var(--pill); background: var(--ink); color: #fff; font-size: .68rem; font-weight: 800; box-shadow: var(--shadow-sm); }
+        .visual-note i { color: #f1c179; }
+
+        /* Anfitrión */
+        .anfitrion { background: var(--paper); }
+
+        .anfitrion-grid { display: grid; grid-template-columns: 250px 1fr; align-items: center; gap: 62px; max-width: 900px; margin: 0 auto; }
+        .anfitrion-photo { position: relative; }
+        .anfitrion-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; border: 9px solid var(--cream); border-radius: 50%; box-shadow: var(--shadow-sm); }
+        .host-badge { position: absolute; right: -12px; bottom: 22px; display: inline-flex; align-items: center; gap: 6px; padding: 9px 12px; border-radius: var(--pill); background: var(--accent); color: #fff; font-size: .65rem; font-weight: 800; box-shadow: var(--shadow-sm); }
+        .anfitrion h2 { margin-bottom: 12px; font-size: clamp(2.2rem, 4vw, 3.2rem); }
+        .anfitrion-copy { max-width: 55ch; margin-bottom: 27px; color: var(--muted); font-size: .9rem; line-height: 1.8; }
+        .host-stats { display: flex; flex-wrap: wrap; gap: 27px; }
+        .host-stat strong { display: block; margin-bottom: 4px; font-family: var(--serif); font-size: 1.65rem; font-weight: 400; }
+        .host-stat span { color: var(--muted); font-size: .68rem; font-weight: 700; }
+
+        /* CTA */
+        .cta { position: relative; overflow: hidden; background: var(--accent); color: #fff; }
+        .cta::before, .cta::after { position: absolute; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; content: ""; pointer-events: none; }
+        .cta::before { top: -170px; right: -100px; width: 430px; height: 430px; }
+        .cta::after { bottom: -260px; left: -120px; width: 520px; height: 520px; }
+        .cta-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+        .cta h2 { max-width: 13ch; margin-bottom: 0; font-size: clamp(2.2rem, 4.5vw, 3.8rem); }
+        .cta-copy { max-width: 38ch; margin: 0; color: rgba(255,255,255,.86); font-size: .88rem; line-height: 1.75; }
+        .cta .btn { flex: none; background: #fff; color: var(--accent-dark); }
+        .cta .btn:hover { background: var(--ink); color: #fff; }
+
+        /* Footer y botón flotante */
+        footer { padding: 42px 0 24px; background: var(--ink); color: rgba(255,253,249,.64); }
+        .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,.14); }
+        .footer-brand { color: #fff; font-family: var(--serif); font-size: 1.22rem; }
+        .footer-brand span { display: block; margin-top: 5px; color: rgba(255,255,255,.46); font-family: var(--sans); font-size: .59rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 21px; font-size: .73rem; font-weight: 700; }
+        .footer-links a:hover { color: #fff; }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 19px; color: rgba(255,255,255,.4); font-size: .68rem; }
+        .footer-bottom p { margin: 0; }
+        .floating-whatsapp { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: grid; width: 54px; height: 54px; place-items: center; border: 4px solid var(--paper); border-radius: 50%; background: #25d366; color: #fff; font-size: 1.38rem; box-shadow: 0 12px 28px rgba(0,0,0,.2); transition: transform .2s ease; }
+        .floating-whatsapp:hover { box-shadow: 0 14px 30px rgba(37, 211, 102, .35); }
+        .floating-whatsapp .floating-label { display: none; }
+
+        /* ---------- Filtros de búsqueda ---------- */
+        .filtros-barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .filtros-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
+        .filtros-tabs::-webkit-scrollbar { display: none; }
+        .filtro-tab { flex: 0 0 auto; display: grid; justify-items: center; gap: 7px; padding: 16px 16px 13px; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--muted); font: 700 .78rem var(--sans); cursor: pointer; transition: color .2s ease, border-color .2s ease; }
+        .filtro-tab i { font-size: 1.35rem; }
+        .filtro-tab:hover { color: var(--ink); }
+        .filtro-tab.activo { color: var(--accent-dark); border-bottom-color: var(--accent); }
+        .filtro-tab:focus-visible, .filtros-boton:focus-visible, .filtros-limpiar:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .filtros-boton { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper); color: var(--ink); font: 800 .82rem var(--sans); cursor: pointer; }
+        .filtros-boton:hover, .filtros-boton[aria-expanded="true"] { border-color: var(--ink); }
+        .filtros-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) auto; gap: 14px; align-items: end; margin-bottom: 18px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper); box-shadow: var(--shadow-sm); }
+        .filtros-panel[hidden] { display: none; }
+        .filtros-panel label { display: grid; gap: 6px; color: var(--ink-soft); font-size: .78rem; font-weight: 800; }
+        .filtros-panel select { padding: 11px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #fff; color: var(--ink); font: 600 .9rem var(--sans); }
+        .filtros-limpiar { padding: 11px 14px; border: 0; background: none; color: var(--accent-dark); font: 800 .8rem var(--sans); text-decoration: underline; cursor: pointer; }
+        .filtros-contador { margin: 0 0 22px; color: var(--muted); font-size: .84rem; font-weight: 700; }
+        .sin-resultados { grid-column: 1 / -1; padding: 40px 0; color: var(--ink-soft); text-align: center; }
+        @media (max-width: 680px) {
+            .filtro-tab { padding: 13px 12px 11px; }
+            .filtros-boton { padding: 10px 12px; }
+            .filtros-panel { grid-template-columns: 1fr 1fr; }
+            .filtros-limpiar { grid-column: 1 / -1; justify-self: start; padding-left: 0; }
+        }
+
+        @media (max-width: 1080px) {
+            .alojamientos-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content { grid-template-columns: minmax(0, 1fr) 270px; gap: 35px; }
+        }
+
+        @media (max-width: 860px) {
+            .nav-links, .nav-cta { display: none; }
+            .nav-toggle { display: grid; place-items: center; }
+            .hero-content { grid-template-columns: 1fr; min-height: 640px; padding-top: 65px; }
+            .hero-card { display: none; }
+            .hero h1 { max-width: 12ch; }
+            .hero-controls { right: 24px; }
+            .presentacion-grid { grid-template-columns: 1fr; gap: 60px; }
+            .presentacion h2 { max-width: 14ch; }
+            .visual-stack { min-height: 520px; max-width: 590px; }
+            .anfitrion-grid { grid-template-columns: 190px 1fr; gap: 40px; }
+            .cta-inner { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (max-width: 680px) {
+            .contenedor { width: min(100% - 36px, 1180px); }
+            .topbar-inner { justify-content: center; min-height: 32px; text-align: center; }
+            .topbar-inner span { display: none; }
+            .nav-row { min-height: 70px; }
+            .mobile-menu { padding-inline: 18px; }
+            .hero { min-height: 610px; }
+            .hero-content { min-height: 610px; padding-top: 38px; padding-bottom: 105px; }
+            .hero-overlay { background: linear-gradient(90deg, rgba(20,24,21,.9), rgba(20,24,21,.52)); }
+            .hero h1 { font-size: clamp(3rem, 15vw, 4.55rem); }
+            .hero-description { font-size: .9rem; }
+            .hero-proof { gap: 10px; }
+            .proof-divider { display: none; }
+            .hero-controls { bottom: 28px; left: 18px; right: auto; }
+            .buscador-wrap { margin-top: -66px; }
+            .buscador { grid-template-columns: 1fr 1fr; padding: 16px; border-radius: 17px; }
+            .buscador .campo:first-child, .buscador .btn-buscar, .buscador .search-status { grid-column: 1 / -1; }
+            .search-status { grid-column: 1 / -1; }
+            .seccion { padding: 78px 0; }
+            .section-heading { display: block; margin-bottom: 30px; }
+            .section-heading h2 { max-width: 100%; margin-bottom: 14px; font-size: 2.45rem; }
+            .section-link { margin-top: 20px; }
+            .beneficios-grid { grid-template-columns: 1fr; }
+            .beneficio, .beneficio:first-child, .beneficio:last-child { min-height: auto; padding: 17px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+            .beneficio:last-child { border-bottom: 0; }
+            .alojamientos-grid { grid-template-columns: 1fr; gap: 38px; }
+            .alojamiento-media { aspect-ratio: 1.18 / 1; }
+            .visual-stack { min-height: 420px; }
+            .visual-main { height: 335px; }
+            .visual-accent { height: 185px; }
+            .visual-note { bottom: 18px; }
+            .anfitrion-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+            .anfitrion-photo { width: 190px; margin: 0 auto; }
+            .host-badge { right: -6px; }
+            .anfitrion-copy { margin-right: auto; margin-left: auto; }
+            .host-stats { justify-content: center; gap: 18px 28px; }
+            .footer-row, .footer-bottom { align-items: flex-start; flex-direction: column; }
+            .footer-links { gap: 14px; }
+            .floating-whatsapp { right: 14px; bottom: 14px; width: auto; height: 46px; padding: 0 16px; gap: 8px; border-width: 3px; border-radius: var(--pill); font-size: 1rem; }
+            .floating-whatsapp .floating-label { display: inline; font-family: var(--sans); font-size: .72rem; font-weight: 800; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#contenido">Ir al contenido principal</a>
+
+    <div class="topbar">
+        <div class="contenedor topbar-inner">
+            <span><strong>Rentals 360</strong> · estadías con atención local en Neiva</span>
+            <a href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer">Respuesta directa por WhatsApp <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="contenedor nav-row">
+            <a class="brand" href="index.html" aria-label="Rentals 360, inicio">
+                <span class="brand-mark" aria-hidden="true">
+                    <span>R</span>
+                    <img src="img/icono/apple-touch-icon.png" alt="" width="40" height="40" onerror="this.style.display='none'">
+                </span>
+                <span class="brand-name">Rentals 360<small>Neiva · Huila</small></span>
+            </a>
+
+            <nav class="nav-links" aria-label="Navegación principal">
+                <a href="#alojamientos">Alojamientos</a>
+                <a href="#experiencia">Cómo funciona</a>
+                <a href="#anfitrion">Tu anfitrión</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+            <a class="btn btn-dark nav-cta" href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-whatsapp"></i> Reservar por WhatsApp
+            </a>
+
+            <button class="nav-toggle" id="botonMenuMovil" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuMovil">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+
+        <nav class="mobile-menu" id="menuMovil" aria-label="Navegación móvil">
+            <a href="#alojamientos">Alojamientos</a>
+            <a href="#experiencia">Cómo funciona</a>
+            <a href="#anfitrion">Tu anfitrión</a>
+            <a href="#contacto">Contacto</a>
+            <a href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <i class="bi bi-arrow-up-right"></i></a>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <section class="hero" aria-label="Presentación de Rentals 360">
+            <div class="hero-slides" id="heroSlides">
+                <div class="hero-slide active">
+                    <img src="img/apartamento1/portada/foto1.avif" alt="Interior de un apartaestudio cómodo en Neiva" fetchpriority="high">
+                </div>
+                <div class="hero-slide">
+                    <img src="img/apartamento2/portada/foto1.avif" alt="Apartaestudio duplex con aire acondicionado" loading="lazy">
+                </div>
+                <div class="hero-slide">
+                    <img src="img/apartamento3/portada/foto1.avif" alt="Apartamento Basement en Neiva" loading="lazy">
+                </div>
+                <div class="hero-slide">
+                    <img src="img/apartamento4/portada/5.avif" alt="Apartamento amplio y acogedor en Neiva" loading="lazy">
+                </div>
+            </div>
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="contenedor hero-content">
+                <div class="hero-copy">
+                    <span class="eyebrow">Estadías con carácter local</span>
+                    <h1>Quédate en <em>Neiva</em> a tu manera.</h1>
+                    <p class="hero-description">Apartamentos completos, cómodos y bien ubicados para que disfrutes la ciudad con la tranquilidad de reservar directamente con tu anfitrión.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#alojamientos">Explorar alojamientos <i class="bi bi-arrow-down-right"></i></a>
+                        <a class="btn btn-light" href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i> Hablar con Héctor</a>
+                    </div>
+                    <div class="hero-proof" aria-label="Datos destacados">
+                        <span class="hero-proof-item"><i class="bi bi-star-fill"></i> 4.87 de calificación</span>
+                        <span class="proof-divider" aria-hidden="true"></span>
+                        <span class="hero-proof-item"><i class="bi bi-lightning-charge-fill"></i> Respuesta rápida</span>
+                    </div>
+                </div>
+
+                <aside class="hero-card" aria-label="Información de reserva">
+                    <div class="hero-card-label"><span>Tu próxima estadía</span><i class="bi bi-sun-fill"></i></div>
+                    <h2>Reserva sin complicaciones.</h2>
+                    <p>Consulta fechas, precios y disponibilidad directamente con el anfitrión.</p>
+                    <ul class="hero-card-list">
+                        <li><i class="bi bi-check2-circle"></i> Atención personalizada</li>
+                        <li><i class="bi bi-check2-circle"></i> Espacios completos</li>
+                        <li><i class="bi bi-check2-circle"></i> Llegada sencilla</li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="hero-controls" aria-label="Cambiar imagen de presentación">
+                <button class="hero-dot active" type="button" data-slide="0" aria-label="Ver imagen 1" aria-current="true"></button>
+                <button class="hero-dot" type="button" data-slide="1" aria-label="Ver imagen 2"></button>
+                <button class="hero-dot" type="button" data-slide="2" aria-label="Ver imagen 3"></button>
+                <button class="hero-dot" type="button" data-slide="3" aria-label="Ver imagen 4"></button>
+            </div>
+        </section>
+
+        <section class="buscador-wrap" aria-label="Consultar estadía">
+            <form class="contenedor buscador" id="formularioBusqueda">
+                <div class="campo">
+                    <label for="destino">Destino</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                        <input id="destino" name="destino" type="text" value="Neiva, Huila" aria-label="Destino">
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="llegada">Llegada</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-calendar3" aria-hidden="true"></i>
+                        <input id="llegada" name="llegada" type="date" aria-label="Fecha de llegada">
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="salida">Salida</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-calendar3" aria-hidden="true"></i>
+                        <input id="salida" name="salida" type="date" aria-label="Fecha de salida">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-buscar" type="submit"><i class="bi bi-search"></i> Ver opciones</button>
+                <p class="search-status" id="estadoBusqueda" role="status"></p>
+            </form>
+        </section>
+
+        <section class="beneficios" aria-label="Ventajas de Rentals 360">
+            <div class="contenedor beneficios-grid">
+                <div class="beneficio">
+                    <span class="beneficio-icon"><i class="bi bi-chat-heart"></i></span>
+                    <span><strong>Trato cercano</strong><span>Una persona real te acompaña.</span></span>
+                </div>
+                <div class="beneficio">
+                    <span class="beneficio-icon"><i class="bi bi-house-check"></i></span>
+                    <span><strong>Espacios completos</strong><span>Elige el alojamiento que necesitas.</span></span>
+                </div>
+                <div class="beneficio">
+                    <span class="beneficio-icon"><i class="bi bi-geo-alt"></i></span>
+                    <span><strong>Conoce Neiva</strong><span>Ubicaciones para vivir la ciudad.</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion alojamientos" id="alojamientos">
+            <div class="contenedor">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">Elige tu espacio</span>
+                        <h2>Alojamientos para sentirte en casa.</h2>
+                    </div>
+                    <div>
+                        <p>Conoce nuestras opciones disponibles en Neiva. La disponibilidad y el precio se confirman directamente con el anfitrión.</p>
+                        <a class="section-link" href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer">Consultar disponibilidad <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="filtros-barra">
+                    <div class="filtros-tabs" role="tablist" aria-label="Tipo de alojamiento">
+                        <button type="button" class="filtro-tab activo" role="tab" aria-selected="true" data-filtro="todos"><i class="bi bi-grid"></i><span>Todos</span></button>
+                        <button type="button" class="filtro-tab" role="tab" aria-selected="false" data-filtro="apartamentos"><i class="bi bi-building"></i><span>Apartamentos</span></button>
+                        <button type="button" class="filtro-tab" role="tab" aria-selected="false" data-filtro="fincas"><i class="bi bi-house"></i><span>Casas y fincas</span></button>
+                        <button type="button" class="filtro-tab" role="tab" aria-selected="false" data-filtro="familias"><i class="bi bi-people"></i><span>Para familias</span></button>
+                        <button type="button" class="filtro-tab" role="tab" aria-selected="false" data-filtro="parejas"><i class="bi bi-heart"></i><span>Para parejas</span></button>
+                    </div>
+                    <button type="button" class="filtros-boton" id="botonFiltros" aria-expanded="false" aria-controls="panelFiltros"><i class="bi bi-sliders"></i> Filtros</button>
+                </div>
+                <div class="filtros-panel" id="panelFiltros" hidden>
+                    <label>Huéspedes (mínimo)
+                        <select id="filtroHuespedes"><option value="0">Cualquiera</option><option value="2">2 o más</option><option value="4">4 o más</option><option value="6">6 o más</option><option value="10">10 o más</option></select>
+                    </label>
+                    <label>Habitaciones (mínimo)
+                        <select id="filtroHabitaciones"><option value="0">Cualquiera</option><option value="1">1 o más</option><option value="2">2 o más</option><option value="3">3 o más</option><option value="5">5 o más</option></select>
+                    </label>
+                    <button type="button" class="filtros-limpiar" id="limpiarFiltros">Limpiar filtros</button>
+                </div>
+                <p class="filtros-contador" id="contadorAlojamientos" aria-live="polite"></p>
+
+                <div class="alojamientos-grid" id="listaAlojamientos"></div>
+            </div>
+        </section>
+
+        <section class="seccion presentacion" id="experiencia">
+            <div class="contenedor presentacion-grid">
+                <div>
+                    <span class="eyebrow">Así de fácil</span>
+                    <h2>Tu estadía empieza con una conversación.</h2>
+                    <p class="presentacion-copy">En Rentals 360 puedes conocer el espacio, resolver tus dudas y coordinar tu llegada de forma directa. Sin formularios complicados: solo la información que necesitas para tomar una buena decisión.</p>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">01</span><div><h3>Explora</h3><p>Revisa las opciones y encuentra el espacio que se adapta a tu viaje.</p></div></div>
+                        <div class="step"><span class="step-number">02</span><div><h3>Escríbenos</h3><p>Consulta disponibilidad, precio y detalles directamente con Héctor.</p></div></div>
+                        <div class="step"><span class="step-number">03</span><div><h3>Disfruta Neiva</h3><p>Coordina tu llegada y prepárate para sentirte como en casa.</p></div></div>
+                    </div>
+                </div>
+                <div class="visual-stack" aria-label="Galería de espacios Rentals 360">
+                    <div class="visual-main"><img src="img/apartamento2/sala/foto1.avif" alt="Sala luminosa de un alojamiento Rentals 360" loading="lazy"></div>
+                    <div class="visual-accent"><img src="img/apartamento1/comedor/foto1.avif" alt="Comedor de un alojamiento Rentals 360" loading="lazy"></div>
+                    <div class="visual-note"><i class="bi bi-stars"></i> Espacios para vivirlos</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion anfitrion" id="anfitrion">
+            <div class="contenedor anfitrion-grid">
+                <div class="anfitrion-photo">
+                    <img src="img/apartamento1/anfiltrion/hector.jpeg" alt="Héctor Iván, anfitrión de Rentals 360" loading="lazy">
+                    <span class="host-badge"><i class="bi bi-patch-check-fill"></i> Superanfitrión</span>
+                </div>
+                <div>
+                    <span class="eyebrow">Conoce a tu anfitrión</span>
+                    <h2>Hola, soy Héctor Iván.</h2>
+                    <p class="anfitrion-copy">Broker inmobiliario y anfitrión desde hace 3 años en Neiva. Me gusta acompañar cada reserva de principio a fin y ayudarte a encontrar un espacio que se sienta bien para tu viaje.</p>
+                    <div class="host-stats">
+                        <div class="host-stat"><strong>4.87</strong><span>Calificación</span></div>
+                        <div class="host-stat"><strong>441</strong><span>Reseñas</span></div>
+                        <div class="host-stat"><strong>3 años</strong><span>Hospedando</span></div>
+                        <div class="host-stat"><strong>100%</strong><span>Índice de respuesta</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion cta" id="contacto">
+            <div class="contenedor cta-inner">
+                <div>
+                    <span class="eyebrow" style="color:#ffd2c5">¿Listo para viajar?</span>
+                    <h2>Tu próximo espacio en Neiva está a un mensaje.</h2>
+                </div>
+                <div>
+                    <p class="cta-copy">Cuéntanos tus fechas y lo que necesitas. Héctor te ayudará a revisar la mejor opción para tu estadía.</p>
+                    <a class="btn" href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i> Contactar por WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contenedor">
+            <div class="footer-row">
+                <div class="footer-brand">Rentals 360<span>Estadías en Neiva, Huila</span></div>
+                <nav class="footer-links" aria-label="Enlaces del pie de página">
+                    <a href="#alojamientos">Alojamientos</a>
+                    <a href="#experiencia">Cómo funciona</a>
+                    <a href="#anfitrion">Anfitrión</a>
+                    <a href="https://wa.me/573112752773" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Rentals 360. Todos los derechos reservados.</p>
+                <p>Neiva, Huila, Colombia</p>
+            </div>
+        </div>
+    </footer>
+
+    <a class="floating-whatsapp" href="https://wa.me/573112752773?text=Hola%20Héctor%2C%20quiero%20consultar%20la%20disponibilidad%20de%20un%20alojamiento%20en%20Neiva." target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+        <i class="bi bi-whatsapp"></i><span class="floating-label">Escribir a Héctor</span>
+    </a>
+
+    <script>
+        (() => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // Menú móvil
+            const botonMenu = document.getElementById('botonMenuMovil');
+            const menuMovil = document.getElementById('menuMovil');
+
+            botonMenu?.addEventListener('click', () => {
+                const abierto = menuMovil.classList.toggle('open');
+                document.body.classList.toggle('menu-abierto', abierto);
+                botonMenu.setAttribute('aria-expanded', String(abierto));
+                botonMenu.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+                botonMenu.innerHTML = abierto ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+            });
+
+            menuMovil?.querySelectorAll('a').forEach((enlace) => {
+                enlace.addEventListener('click', () => {
+                    menuMovil.classList.remove('open');
+                    document.body.classList.remove('menu-abierto');
+                    botonMenu?.setAttribute('aria-expanded', 'false');
+                    if (botonMenu) {
+                        botonMenu.setAttribute('aria-label', 'Abrir menú');
+                        botonMenu.innerHTML = '<i class="bi bi-list"></i>';
+                    }
+                });
+            });
+
+            // Carrusel ligero sin dependencia de Bootstrap.
+            const slides = [...document.querySelectorAll('.hero-slide')];
+            const dots = [...document.querySelectorAll('.hero-dot')];
+            let slideActual = 0;
+            let timer;
+
+            const mostrarSlide = (indice) => {
+                slideActual = indice;
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === indice));
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === indice);
+                    dot.toggleAttribute('aria-current', i === indice);
+                });
+            };
+
+            const iniciarCarrusel = () => {
+                if (prefersReducedMotion || slides.length < 2) return;
+                timer = window.setInterval(() => mostrarSlide((slideActual + 1) % slides.length), 5200);
+            };
+
+            dots.forEach((dot, indice) => {
+                dot.addEventListener('click', () => {
+                    window.clearInterval(timer);
+                    mostrarSlide(indice);
+                    iniciarCarrusel();
+                });
+            });
+            iniciarCarrusel();
+
+            // ============================================================
+            // LISTA DE ALOJAMIENTOS
+            // Cada línea es un apartamento. Para agregar uno nuevo:
+            // copia una línea completa, pégala al final (antes del ];)
+            // y cambia sus datos. Pon un id distinto en cada uno.
+            // foto: deja '' si todavía no tienes foto (sale un recuadro con ícono).
+            // insignia: texto corto sobre la foto (opcional, solo se ve con foto).
+            // icono: ícono del recuadro sin foto (opcional).
+            // tipo: 'apartamento' o 'finca' (sirve para el filtro "Casas y fincas").
+            // "Para familias" sale solo: 4 huéspedes o más. "Para parejas": hasta 3 huéspedes.
+            // ============================================================
+            const ALOJAMIENTOS = [
+                { id: 1, tipo: 'apartamento', titulo: 'Hermoso apartaestudio A/C', lugar: 'Neiva, Huila', huespedes: 2, habitaciones: 1, banos: 1, calificacion: '4.91', foto: 'img/apartamento1/comedor/foto1.avif', insignia: 'Estadía destacada', enlace: 'https://www.airbnb.com/l/7oTZo6df?__LISTING_ID__=981454257103918832&unique_share_id=bf84ef28-0e6b-4a84-b66f-97d3bc9a717b&viralityEntryPoint=1&s=76' },
+                { id: 2, tipo: 'apartamento', titulo: 'Apartaestudio duplex con A/C', lugar: 'Buganviles, Neiva', huespedes: 3, habitaciones: 1, banos: 1, calificacion: '4.93', foto: 'img/apartamento2/portada/foto5.avif', insignia: 'Favorito entre huéspedes', enlace: 'https://www.airbnb.com/l/7oTZo6df?__LISTING_ID__=991997035920332929&unique_share_id=a475a33c-dd76-4d4c-aec6-8ea5ed7df014&viralityEntryPoint=1&s=76' },
+                { id: 3, tipo: 'finca', titulo: 'Finca Villa el Resplandor', lugar: 'Rivera, Huila', huespedes: '16+', habitaciones: 6, banos: 5, calificacion: '5.0', foto: 'img/piscina-portada.webp', icono: 'bi-tree', enlace: 'https://www.airbnb.com/l/7oTZo6df?__LISTING_ID__=1137621991215261769&unique_share_id=ea56b3e7-872d-42cb-9dbd-952190afadab&viralityEntryPoint=1&s=76' },
+                { id: 4, tipo: 'apartamento', titulo: '“Basement Neiva” con A/C', lugar: 'Buganviles, Neiva', huespedes: 5, habitaciones: 2, banos: 1, calificacion: '4.86', foto: 'img/apartamento3/sala/foto2.avif', insignia: 'Favorito entre huéspedes', enlace: 'https://www.airbnb.com/l/7oTZo6df?__LISTING_ID__=1139413612895015710&unique_share_id=e571aa43-e810-4c6e-a783-ba7dbf80c51a&viralityEntryPoint=1&s=76' },
+                { id: 5, tipo: 'apartamento', titulo: 'Confortable apartamento nuevo', lugar: 'Neiva, Huila', huespedes: 5, habitaciones: 2, banos: 2, calificacion: '4.91', foto: 'img/comedor-portada.avif', enlace: 'https://www.airbnb.com/l/7oTZo6df?__LISTING_ID__=1157520780366884050&unique_share_id=5c277bfe-db7f-4eea-b41f-4184f53f14c1&viralityEntryPoint=1&s=76' },
+                { id: 6, tipo: 'apartamento', titulo: 'Amplio y acogedor apartamento', lugar: 'Neiva, Huila', huespedes: 5, habitaciones: 2, banos: 2.5, calificacion: '4.80', foto: 'img/apartamento4/sala/4.avif', insignia: 'Para compartir', enlace: 'https://www.airbnb.com/l/7oTZo6df?__LISTING_ID__=1172794343600279246&unique_share_id=c112f258-a1c9-405d-8b7f-523b3f715d51&viralityEntryPoint=1&s=76' },
+                { id: 7, tipo: 'apartamento', titulo: 'Apartamento entero “adwis”', lugar: 'Neiva, Huila', huespedes: 5, habitaciones: 2, banos: 1, calificacion: '4.87', foto: 'img/apto7-portada.avif', enlace: 'https://www.airbnb.cl/rooms/986497421771903123?unique_share_id=8c0a9a4a-45d4-4645-b26a-0239ca66d370&viralityEntryPoint=1&s=76' },
+                { id: 8, tipo: 'finca', titulo: 'Hotel campestre Villa el Ocaso', lugar: 'Rivera, Huila', huespedes: 18, habitaciones: 6, banos: 6, calificacion: '5.0', foto: 'img/apto8-portada.avif', icono: 'bi-tree', enlace: 'https://www.airbnb.cl/rooms/1055379594109603933?unique_share_id=fe883b3b-17b4-4b72-916c-db9d712b91de&viralityEntryPoint=1&s=76' },
+                { id: 9, tipo: 'apartamento', titulo: 'Acogedor apartamento en Neiva', lugar: 'Neiva, Huila', huespedes: 7, habitaciones: 3, banos: 2, calificacion: '5.0', foto: 'img/apto9-portada.avif', enlace: 'https://www.airbnb.cl/rooms/1440167065136114331?unique_share_id=75d46d37-8c55-4e6b-b274-644a735db036&viralityEntryPoint=1&s=76' },
+                { id: 10, tipo: 'apartamento', titulo: 'Moderno apartaestudio con ubicación privilegiada', lugar: 'Neiva, Huila', huespedes: 3, habitaciones: 1, banos: 1, calificacion: '4.89', foto: 'img/apto10-portada.avif', enlace: 'https://www.airbnb.cl/rooms/1522064542643040237?unique_share_id=20ce9146-98f6-4ac5-89d3-9134aa9dbdbb&viralityEntryPoint=1&s=76' },
+                { id: 11, tipo: 'apartamento', titulo: 'Aparta suite ViBe Neiva', lugar: 'Neiva, Huila', huespedes: 5, habitaciones: 2, banos: 2, calificacion: '4.85', foto: 'img/apto11-portada.avif', enlace: 'https://www.airbnb.cl/rooms/1559766614087644569?unique_share_id=adfe8725-4032-49c9-ac4f-ce3715ee54a4&viralityEntryPoint=1&s=76' },
+                { id: 12, tipo: 'apartamento', titulo: 'Tu espacio ideal cerca al Unicentro', lugar: 'Neiva, Huila', huespedes: 3, habitaciones: 1, banos: 1, calificacion: '4.75', foto: 'img/apto12-portada.avif', enlace: 'https://www.airbnb.cl/rooms/1634335956895865656?unique_share_id=8bb69290-3fb2-4e37-99d3-8e1a8eb69ec2&viralityEntryPoint=1&s=76' },
+                { id: 13, tipo: 'apartamento', titulo: 'Comodidad y estilo en un solo lugar', lugar: 'Neiva, Huila', huespedes: 3, habitaciones: 1, banos: 1, calificacion: '4.86', foto: 'img/apto13-portada.avif', enlace: 'https://www.airbnb.cl/rooms/1651418778671692147?unique_share_id=8ba5e6f8-361a-420d-b047-00e9e489626d&viralityEntryPoint=1&s=76' },
+                { id: 14, tipo: 'apartamento', titulo: 'Moderno apartamento familiar', lugar: 'Neiva, Huila', huespedes: 6, habitaciones: 3, banos: 1, foto: 'img/apto14-portada.avif', insignia: 'Nuevo', enlace: 'https://www.airbnb.cl/rooms/1795305542257615152?unique_share_id=df9c2c6d-d3c4-4fc8-931a-61097b2fac5a&viralityEntryPoint=1&s=76' },
+                { id: 15, tipo: 'apartamento', titulo: 'Apartamento ViP Neiva', lugar: 'Neiva, Huila', huespedes: 6, habitaciones: 3, banos: 2, foto: 'img/apto15-portada.avif', insignia: 'Nuevo', enlace: 'https://www.airbnb.cl/rooms/1796790533274124034?unique_share_id=04fecbb9-4afc-40fd-bd6d-caaabad76471&viralityEntryPoint=1&s=76' },
+                { id: 16, tipo: 'apartamento', titulo: 'Apartamento suite Neiva', lugar: 'Neiva, Huila', huespedes: 6, habitaciones: 3, banos: 2, foto: 'img/apto16-portada.avif', insignia: 'Nuevo', enlace: 'https://www.airbnb.cl/rooms/1798780997454220193?unique_share_id=ef46a4ce-b91e-40e3-a355-e242e5ace783&viralityEntryPoint=1&s=76' }
+            ];
+
+            const plural = (n, uno, varios) => `${n} ${Number(n) === 1 ? uno : varios}`;
+            const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+            const listaAlojamientos = document.getElementById('listaAlojamientos');
+            const contadorAlojamientos = document.getElementById('contadorAlojamientos');
+            const selHuespedes = document.getElementById('filtroHuespedes');
+            const selHabitaciones = document.getElementById('filtroHabitaciones');
+
+            // Filtros activos: la pestaña elegida y los mínimos del panel "Filtros".
+            let pestanaActiva = 'todos';
+            const numero = (valor) => parseInt(valor, 10) || 0; // '16+' cuenta como 16
+
+            const coincide = (a) => {
+                const huespedes = numero(a.huespedes);
+                if (pestanaActiva === 'apartamentos' && a.tipo !== 'apartamento') return false;
+                if (pestanaActiva === 'fincas' && a.tipo !== 'finca') return false;
+                if (pestanaActiva === 'familias' && huespedes < 4) return false;
+                if (pestanaActiva === 'parejas' && huespedes > 3) return false;
+                return huespedes >= numero(selHuespedes.value) && numero(a.habitaciones) >= numero(selHabitaciones.value);
+            };
+
+            const dibujarLista = () => {
+                const visibles = ALOJAMIENTOS.filter(coincide);
+                listaAlojamientos.innerHTML = visibles.map((a) => {
+                    const media = a.foto
+                        ? `<div class="alojamiento-media">
+                            <img src="${esc(a.foto)}" alt="${esc(a.titulo)}" loading="lazy">
+                            ${a.insignia ? `<span class="badge">${esc(a.insignia)}</span>` : ''}
+                            <button class="favorite" type="button" data-clave="guardado-apartamento${esc(a.id)}" aria-label="Guardar ${esc(a.titulo)}" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                        </div>`
+                        : `<div class="alojamiento-media"><i class="bi ${esc(a.icono || 'bi-house-add')}" aria-hidden="true"></i></div>`;
+                    const rating = a.calificacion ? `<span class="rating"><i class="bi bi-star-fill"></i> ${esc(a.calificacion)}</span>` : '';
+                    return `<article class="alojamiento-card${a.foto ? '' : ' coming-soon'}">
+                        ${media}
+                        <div class="alojamiento-info">
+                            <div class="alojamiento-title-row"><h3 class="alojamiento-title">${esc(a.titulo)}</h3>${rating}</div>
+                            <p class="location">${esc(a.lugar)}</p>
+                            <div class="details"><span><i class="bi bi-people"></i> ${plural(a.huespedes, 'huésped', 'huéspedes')}</span><span><i class="bi bi-door-closed"></i> ${plural(a.habitaciones, 'habitación', 'habitaciones')}</span><span><i class="bi bi-droplet"></i> ${plural(a.banos, 'baño', 'baños')}</span></div>
+                            <a class="card-link" href="${esc(a.enlace)}" target="_blank" rel="noopener noreferrer">Ver en Airbnb <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </article>`;
+                }).join('') || '<p class="sin-resultados">No hay alojamientos con esos filtros. Prueba quitar alguno.</p>';
+                contadorAlojamientos.textContent = `Mostrando ${visibles.length} de ${ALOJAMIENTOS.length} alojamientos`;
+                activarFavoritos(); // los corazones se crean de nuevo cada vez que cambia la lista
+            };
+
+            document.querySelectorAll('.filtro-tab').forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    pestanaActiva = tab.dataset.filtro;
+                    document.querySelectorAll('.filtro-tab').forEach((otra) => {
+                        const activa = otra === tab;
+                        otra.classList.toggle('activo', activa);
+                        otra.setAttribute('aria-selected', String(activa));
+                    });
+                    dibujarLista();
+                });
+            });
+
+            const botonFiltros = document.getElementById('botonFiltros');
+            const panelFiltros = document.getElementById('panelFiltros');
+            botonFiltros.addEventListener('click', () => {
+                const abierto = panelFiltros.hidden;
+                panelFiltros.hidden = !abierto;
+                botonFiltros.setAttribute('aria-expanded', String(abierto));
+            });
+            selHuespedes.addEventListener('change', dibujarLista);
+            selHabitaciones.addEventListener('change', dibujarLista);
+            document.getElementById('limpiarFiltros').addEventListener('click', () => {
+                selHuespedes.value = '0';
+                selHabitaciones.value = '0';
+                dibujarLista();
+            });
+
+            // Favoritos persistentes entre la portada y las fichas de alojamiento.
+            const activarFavoritos = () => document.querySelectorAll('.favorite').forEach((boton) => {
+                const clave = boton.dataset.clave;
+                const icono = boton.querySelector('i');
+                const pintar = (guardado) => {
+                    boton.classList.toggle('active', guardado);
+                    boton.setAttribute('aria-pressed', String(guardado));
+                    boton.setAttribute('aria-label', guardado ? 'Quitar alojamiento de favoritos' : 'Guardar alojamiento');
+                    icono.classList.toggle('bi-heart', !guardado);
+                    icono.classList.toggle('bi-heart-fill', guardado);
+                };
+
+                let guardado = false;
+                try { guardado = localStorage.getItem(clave) === 'true'; } catch (error) { /* almacenamiento bloqueado */ }
+                pintar(guardado);
+
+                boton.addEventListener('click', (evento) => {
+                    evento.preventDefault();
+                    evento.stopPropagation();
+                    guardado = !guardado;
+                    try {
+                        if (guardado) localStorage.setItem(clave, 'true');
+                        else localStorage.removeItem(clave);
+                    } catch (error) { /* almacenamiento bloqueado */ }
+                    pintar(guardado);
+                });
+            });
+            dibujarLista();
+
+            // Buscador: guía al usuario a las opciones y muestra el alcance real de la consulta.
+            const formulario = document.getElementById('formularioBusqueda');
+            const llegada = document.getElementById('llegada');
+            const salida = document.getElementById('salida');
+            const estado = document.getElementById('estadoBusqueda');
+            const hoy = new Date().toISOString().split('T')[0];
+            llegada.min = hoy;
+            salida.min = hoy;
+
+            llegada.addEventListener('change', () => {
+                salida.min = llegada.value || hoy;
+                if (salida.value && llegada.value && salida.value < llegada.value) salida.value = '';
+            });
+
+            formulario.addEventListener('submit', (evento) => {
+                evento.preventDefault();
+                const destino = document.getElementById('destino').value.trim() || 'Neiva, Huila';
+                const llegadaTexto = llegada.value ? new Date(`${llegada.value}T12:00:00`).toLocaleDateString('es-CO', { day: 'numeric', month: 'long' }) : 'la fecha que prefieras';
+                const salidaTexto = salida.value ? new Date(`${salida.value}T12:00:00`).toLocaleDateString('es-CO', { day: 'numeric', month: 'long' }) : 'una fecha por confirmar';
+                const mensaje = `Hola Héctor, quiero consultar disponibilidad en ${destino} del ${llegadaTexto} al ${salidaTexto}.`;
+                estado.innerHTML = `<span>Mostrando opciones para <strong>${esc(destino)}</strong>, del ${esc(llegadaTexto)} al ${esc(salidaTexto)}.</span><a class="status-cta" href="https://wa.me/573112752773?text=${encodeURIComponent(mensaje)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i> Consultar ahora</a>`;
+                estado.classList.add('visible');
+                document.getElementById('alojamientos').scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+            });
+        })();
+    </script>
+</body>
+</html>
